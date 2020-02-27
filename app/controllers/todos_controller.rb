@@ -1,5 +1,7 @@
 class TodosController < ApplicationController
     
+    #before_action :setTodo # run method before methods in todoscontroller
+    
     def new
         @todo = Todo.new
     end
@@ -48,6 +50,10 @@ class TodosController < ApplicationController
     
     private 
     
+        def setTodo
+            @todo = Todo.find(params[:id])
+        end
+        
         def todo_params
             params.require(:todo).permit(:name, :description)
         end
